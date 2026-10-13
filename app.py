@@ -93,7 +93,7 @@ En este tutorial, **EPM** se refiere a la evaluación del desempeño mediante ev
         guardar = st.form_submit_button("Registrar datos")
     if guardar:
         if dato.strip():
-            st.session_state.kpis = dato.strip()
+            st.session_state.kpis_registrados = dato.strip()
             st.success("Información registrada únicamente durante esta sesión.")
         else:
             st.info("Puedes continuar con los ejemplos.")
