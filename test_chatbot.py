@@ -44,7 +44,7 @@ def test_pantalla_inicial_y_tutorial_completo():
 
     app.text_area[0].set_value("Entregas a tiempo, 95%, 88%, octubre")
     pulsar(app, "Registrar datos")
-    assert "95%" in app.session_state.kpis
+    assert "95%" in app.session_state.kpis_registrados
     pulsar(app, "Continuar")
 
     assert any("entrevista" in x.value.lower() for x in app.subheader)
