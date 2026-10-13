@@ -26,12 +26,20 @@ def avanzar(siguiente):
     st.session_state.paso = siguiente
     st.rerun()
 
+st.title("Asistente de capacitación para líderes")
+st.caption("Chatbot educativo para la evaluación de desempeño de mandos medios")
+
 with st.sidebar:
     st.header("Capacitación de líderes")
-    actual = st.radio("Contenido", PASOS, key="paso")
+    actual = st.radio(
+        "Contenido", PASOS,
+        index=PASOS.index(st.session_state.paso),
+        key=f"menu_{st.session_state.paso}",
+    )
+    if actual != st.session_state.paso:
+        st.session_state.paso = actual
+        st.rerun()
     st.caption(f"Puesto: {st.session_state.puesto or 'No especificado'}")
-
-st.title("Asistente de capacitación para líderes")
 if actual == "Inicio":
     st.write("Bienvenido al asistente de capacitación para líderes y mandos medios.")
     st.markdown("""En esta capacitación aprenderás a:
