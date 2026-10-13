@@ -249,5 +249,20 @@ def menu():
 
 
 if __name__ == "__main__":
-    bienvenida()
-    menu()
+    # Mantiene el tutorial original en consola y habilita la interfaz web cuando
+    # Streamlit Cloud usa este archivo como punto de entrada por accidente.
+    try:
+        from streamlit.runtime.scriptrunner import get_script_run_ctx
+    except ImportError:
+        get_script_run_ctx = None
+
+    if get_script_run_ctx is not None and get_script_run_ctx(suppress_warning=True) is not None:
+        from pathlib import Path
+        import runpy
+        import streamlit as st
+
+        runpy.run_path(str(Path(__file__).with_name("app.py")), run_name="__main__")
+        st.stop()
+    else:
+        bienvenida()
+        menu()
