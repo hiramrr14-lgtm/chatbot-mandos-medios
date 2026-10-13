@@ -36,13 +36,13 @@ def test_pantalla_inicial_y_tutorial_completo():
     pulsar(app, "Comenzar")
     assert any("Definición del puesto" in x.value for x in app.subheader)
 
-    app.text_input[0].set_value("Vendedor").run()
+    app.text_input[0].set_value("Vendedor")
     pulsar(app, "Guardar")
     assert app.session_state.puesto == "Vendedor"
     pulsar(app, "Continuar")
     assert any("KPIs" in x.value for x in app.subheader)
 
-    app.text_area[0].set_value("Entregas a tiempo, 95%, 88%, octubre").run()
+    app.text_area[0].set_value("Entregas a tiempo, 95%, 88%, octubre")
     pulsar(app, "Registrar datos")
     assert "95%" in app.session_state.kpis
     pulsar(app, "Continuar")
@@ -55,7 +55,7 @@ def test_pantalla_inicial_y_tutorial_completo():
 
     app.text_area[0].set_value(
         "La meta era 95%. Gracias por compartirlo. Podemos acordar un plan para mejorar."
-    ).run()
+    )
     pulsar(app, "Evaluar")
     assert any("3 / 3" in str(x.value) for x in app.metric)
     pulsar(app, "Continuar")
